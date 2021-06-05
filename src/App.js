@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "@fontsource/roboto";
+import { Switch, Route, Redirect } from "react-router-dom";
+import { Home } from "./component";
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<Switch>
+			<Redirect exact from="/" to="/dashboard" />
+			<Route
+				exact
+				path="/:page?"
+				render={(props) => <Home {...props} />}
+			/>
+		</Switch>
+	);
 }
 
 export default App;
