@@ -55,7 +55,7 @@ const generateOptions = (data) => {
 };
 const LineChart = ({ data }) => {
 	const [options, setOptions] = useState({});
-	const [reportType, setReportType] = useState("");
+	const [reportType, setReportType] = useState("all");
 
 	useEffect(() => {
 		let customData = data;

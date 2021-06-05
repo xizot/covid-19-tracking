@@ -24,8 +24,9 @@ function Home({ match, history }) {
 		};
 		setSelectedTab(tabNameToIndex[page]);
 	}, [page]);
+
 	return (
-		<div>
+		<>
 			<AppBar position="static">
 				<Container>
 					<Tabs value={selectedTab} onChange={handleChange}>
@@ -35,12 +36,14 @@ function Home({ match, history }) {
 					</Tabs>
 				</Container>
 			</AppBar>
-			<Container>
-				{selectedTab === 0 && <Dashboard />}
-				{selectedTab === 1 && <Wiki />}
-				{selectedTab === 2 && <News />}
-			</Container>
-		</div>
+			<div style={{ padding: "50px 0", background: "#f1f5f8" }}>
+				<Container>
+					{selectedTab === 0 && <Dashboard />}
+					{selectedTab === 1 && <Wiki />}
+					{selectedTab === 2 && <News />}
+				</Container>
+			</div>
+		</>
 	);
 }
 

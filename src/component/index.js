@@ -7,3 +7,5 @@ export { default as Dashboard } from "./Dashboard/Dashboard";
 export { default as Home } from "./Home/Home";
 export { default as Wiki } from "./Wiki/Wiki";
 export { default as News } from "./News/News";
+export { default as SignCard } from "./SignCard/SignCard";
+export { default as PreventionCard } from "./PreventionCard/PreventionCard";
