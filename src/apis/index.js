@@ -8,3 +8,5 @@ export const getMapDataByCountryId = (country) =>
 	import(
 		`@highcharts/map-collection/countries/${country}/${country}-all.geo.json`
 	);
+export const getNews = (limit, page) =>
+	axios.get(`${process.env.REACT_APP_NEWS_API}?limit=${limit}&page=${page}`);

@@ -10,16 +10,23 @@ function Dashboard() {
 	const [report, setReport] = useState([]);
 	const [selectedCountryId, setSelectedCountryId] = useState("");
 	useEffect(() => {
+		let unmounted = false;
+
 		getCountry().then((res) => {
 			const countries = sortBy(res.data, "Country");
-			setCountries(countries);
-			setSelectedCountryId("vn");
+			if (!unmounted) {
+				setCountries(countries);
+				setSelectedCountryId("vn");
+			}
 		});
+		return () => {
+			unmounted = true;
+		};
 	}, []);
 
-	const handleOnChange = (e) => {
+	const handleOnChange = React.useCallback((e) => {
 		setSelectedCountryId(e.target.value);
-	};
+	}, []);
 
 	useEffect(() => {
 		if (selectedCountryId) {

@@ -71,7 +71,11 @@ const LineChart = ({ data }) => {
 		<>
 			<ButtonGroup
 				size="small"
-				style={{ display: "flex", justifyContent: "flex-end" }}
+				style={{
+					display: "flex",
+					justifyContent: "flex-end",
+					marginBottom: 10,
+				}}
 			>
 				<Button
 					color={reportType === "all" ? "secondary" : ""}
