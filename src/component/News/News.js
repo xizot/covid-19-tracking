@@ -3,6 +3,7 @@ import Pagination from "@material-ui/lab/Pagination";
 import { getNews } from "../../apis";
 import NewsCard from "./NewsCard";
 import { Container, Grid, makeStyles } from "@material-ui/core";
+import Loading from "../Loading/Loading";
 const useStyles = makeStyles({
 	news: {
 		marginBottom: 50,
@@ -16,19 +17,23 @@ function News() {
 	const styles = useStyles();
 	const [page, setPage] = useState(0);
 	const [data, setData] = useState({});
+	const [isLoading, setIsLoading] = useState(true);
 	const limit = 8;
 	const handleChange = React.useCallback((e, newValue) => {
 		setPage(newValue - 1);
 	}, []);
 
 	useEffect(() => {
+		setIsLoading(true);
 		getNews(limit, page).then((res) => {
 			setData(res.data);
+			setIsLoading(false);
 		});
 	}, [page]);
 
 	return (
-		<div>
+		<>
+			{isLoading && <Loading />}
 			<Grid container spacing={4} className={styles.news}>
 				{data.data &&
 					data.data.rows.map((item, index) => (
@@ -55,7 +60,7 @@ function News() {
 					onChange={(e, value) => handleChange(e, value)}
 				/>
 			</Container>
-		</div>
+		</>
 	);
 }
 

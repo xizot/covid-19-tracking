@@ -10,6 +10,7 @@ import React from "react";
 const useStyles = makeStyles({
 	formControl: {
 		margin: "20px 0",
+		width: "100%",
 	},
 });
 

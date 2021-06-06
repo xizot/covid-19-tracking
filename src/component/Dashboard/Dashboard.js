@@ -1,6 +1,6 @@
-import { Typography } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
-import { CountrySelector, HighLight, Summary } from "..";
+import { CountrySelector, HighLight, LineChart, Loading } from "..";
 import moment from "moment";
 import { getCountry, getReportByCountry } from "../../apis";
 import { sortBy } from "lodash";
@@ -9,10 +9,12 @@ function Dashboard() {
 	const [countries, setCountries] = useState([]);
 	const [report, setReport] = useState([]);
 	const [selectedCountryId, setSelectedCountryId] = useState("");
+	const [isLoading, setIsLoading] = useState(true);
 	useEffect(() => {
 		let unmounted = false;
-
+		setIsLoading(true);
 		getCountry().then((res) => {
+			setIsLoading(false);
 			const countries = sortBy(res.data, "Country");
 			if (!unmounted) {
 				setCountries(countries);
@@ -42,18 +44,24 @@ function Dashboard() {
 
 	return (
 		<>
+			{isLoading && <Loading />}
 			<Typography component="h2" variant="h2">
 				Covid-19 tracker
 			</Typography>
 			<Typography>{moment().format("LLL")}</Typography>
-
-			<CountrySelector
-				countries={countries}
-				handleOnChange={handleOnChange}
-				value={selectedCountryId}
-			/>
-			<HighLight report={report} />
-			<Summary report={report} selectedCountryId={selectedCountryId} />
+			<Grid container spacing={4}>
+				<Grid item sm={4} xs={12}>
+					<CountrySelector
+						countries={countries}
+						handleOnChange={handleOnChange}
+						value={selectedCountryId}
+					/>
+					<HighLight report={report} />
+				</Grid>
+				<Grid item sm={8} xs={12}>
+					<LineChart data={report} />
+				</Grid>
+			</Grid>
 		</>
 	);
 }

@@ -96,7 +96,7 @@ const LineChart = ({ data }) => {
 					7 days
 				</Button>
 			</ButtonGroup>
-			<HighchartsReact highcharts={HighChart} options={options} />;
+			<HighchartsReact highcharts={HighChart} options={options} />
 		</>
 	);
 };

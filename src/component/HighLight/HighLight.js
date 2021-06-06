@@ -1,4 +1,4 @@
-import { Grid, makeStyles } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 import React from "react";
 import HighLightCart from "./HighLightCart";
 
@@ -29,18 +29,17 @@ function HighLight({ report }) {
 	];
 	return (
 		<>
-			<Grid container spacing={3} className={styles.highLight}>
-				{summary.map((item, index) => {
-					return (
+			{summary.map((item, index) => {
+				return (
+					<div className={styles.highLight} key={index}>
 						<HighLightCart
-							key={index}
 							title={item.title}
 							count={item.count}
 							type={item.type}
 						/>
-					);
-				})}
-			</Grid>
+					</div>
+				);
+			})}
 		</>
 	);
 }

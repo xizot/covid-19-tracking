@@ -45,6 +45,9 @@ const useStyles = makeStyles({
 	primary: {
 		color: "#2c98de",
 	},
+	img: {
+		maxWidth: "100%",
+	},
 });
 
 const signGenerate = () => {
@@ -226,7 +229,7 @@ function Wiki() {
 						</Typography>
 					</Grid>
 					<Grid item sm={4} xs={12}>
-						<img src={DetailImg} alt="" />
+						<img src={DetailImg} alt="" className={styles.img} />
 						<Typography
 							variant="h3"
 							className={`${styles.title} ${styles.mt30} ${styles.primary}`}
